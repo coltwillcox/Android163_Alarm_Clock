@@ -1,7 +1,7 @@
 <resources>
 
     <string name="app_name">Pevac</string>
-    <string name="textview_message">Did you turn on the alarm?</string>
+    <string name="textview_message">Alarm not set.</string>
     <string name="switch_title">Alarm</string>
 
 </resources>
