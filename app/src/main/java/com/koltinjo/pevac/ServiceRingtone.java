@@ -49,15 +49,15 @@ public class ServiceRingtone extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         alarm = intent.getExtras().getBoolean("alarm");
-        if (alarm) {
+        if (alarm && !mediaPlayer.isPlaying()) {
             mediaPlayer.start();
-            notificationManager.notify(0, notification);
-        } else {
-            // TODO Clear notification.
+            notificationManager.notify(47, notification);
+        } else if (!alarm && mediaPlayer.isPlaying()) {
             mediaPlayer.pause();
             mediaPlayer.seekTo(0);
+            notificationManager.cancel(47);
+            // TODO sharedPrefs checked = false. Will this work?
         }
-
         return START_NOT_STICKY;
     }
 
@@ -66,4 +66,5 @@ public class ServiceRingtone extends Service {
         mediaPlayer.stop();
         super.onDestroy();
     }
+
 }
