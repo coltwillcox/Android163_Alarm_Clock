@@ -14,6 +14,8 @@ import android.widget.TimePicker;
 import java.util.Calendar;
 
 // TODO Configuration change.
+// TODO Check when screen off.
+// TODO Popup. Or open ActivityMain when alarm.
 
 public class ActivityMain extends AppCompatActivity {
 
@@ -43,6 +45,7 @@ public class ActivityMain extends AppCompatActivity {
         message = (TextView) findViewById(R.id.activity_main_textview_message);
 
         // TODO Set switcher position, if alarm is set? Before listener.
+
         switcher.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
@@ -58,7 +61,7 @@ public class ActivityMain extends AppCompatActivity {
     private void checked() {
         int hour;
         int minute;
-        if (Build.VERSION.SDK_INT >= 23) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             hour = timePicker.getHour();
             minute = timePicker.getMinute();
         } else {
