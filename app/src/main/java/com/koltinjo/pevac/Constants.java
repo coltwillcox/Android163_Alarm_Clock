@@ -8,5 +8,6 @@ public class Constants {
 
     public static int INTENT_REQUEST_CODE = 47;
     public static int NOTIFICATION_ID = 69;
+    public static String PREFS_NAME = "PEVAC";
 
 }

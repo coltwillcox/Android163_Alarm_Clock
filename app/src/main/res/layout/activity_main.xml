@@ -13,12 +13,12 @@
         tools:context="com.koltinjo.pevac.ActivityMain">
 
     <ImageView
+            android:id="@+id/activity_main_imageview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:srcCompat="@drawable/pevac"
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true"
-            android:id="@+id/imageView"/>
+            app:srcCompat="@drawable/pevac"/>
 
     <TimePicker
             android:id="@+id/activity_main_timepicker"
@@ -28,21 +28,21 @@
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true"/>
 
-    <Switch
-            android:id="@+id/activity_main_switch"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/switch_title"
-            android:layout_below="@+id/activity_main_timepicker"
-            android:layout_centerHorizontal="true"/>
-
     <TextView
             android:id="@+id/activity_main_textview_message"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="@string/textview_message"
+            android:text="@string/textview_message_set_no"
             android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"/>
+
+    <Switch
+            android:id="@+id/activity_main_switch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/switch_title"
+            android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"/>
 
 </RelativeLayout>

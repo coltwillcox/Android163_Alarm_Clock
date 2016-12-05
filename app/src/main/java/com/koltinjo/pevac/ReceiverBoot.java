@@ -20,7 +20,7 @@ public class ReceiverBoot extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        SharedPreferences sharedPreferences = context.getSharedPreferences("PEVAC", MODE_PRIVATE);
+        SharedPreferences sharedPreferences = context.getSharedPreferences(Constants.PREFS_NAME, MODE_PRIVATE);
         boolean checked = sharedPreferences.getBoolean("checked", false);
 
         // Set alarm on boot if previously checked.
