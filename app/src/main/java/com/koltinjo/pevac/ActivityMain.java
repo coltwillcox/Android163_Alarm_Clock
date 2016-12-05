@@ -7,7 +7,6 @@ import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -23,6 +22,9 @@ import java.util.Calendar;
 // TODO Icon.
 // TODO Vibrate.
 // TODO Shake to turn off.
+// TODO TimePicker colors.
+// TODO Show how much time is left when alarm is set.
+// TODO Change messages.
 
 public class ActivityMain extends AppCompatActivity {
 
@@ -49,8 +51,8 @@ public class ActivityMain extends AppCompatActivity {
         calendar = Calendar.getInstance();
 
         // Intents.
-        intent = new Intent(this, AlarmReceiver.class);
-        pendingIntent = PendingIntent.getBroadcast(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        intent = new Intent(this, ReceiverAlarm.class);
+        pendingIntent = PendingIntent.getBroadcast(this, Constants.INTENT_REQUEST_CODE, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
         // Views.
         timePicker = (TimePicker) findViewById(R.id.activity_main_timepicker);
@@ -86,7 +88,6 @@ public class ActivityMain extends AppCompatActivity {
     }
 
     private void checked() {
-        Log.d("oiram", "from checked");
         int hour;
         int minute;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -101,21 +102,17 @@ public class ActivityMain extends AppCompatActivity {
         calendar.set(Calendar.MINUTE, minute);
         calendar.set(Calendar.SECOND, 0);
         calendar.set(Calendar.MILLISECOND, 0);
-
         if (calendar.getTimeInMillis() < System.currentTimeMillis()) {
             calendar.add(Calendar.DATE, 1);
-            Log.d("oiram", "1");
         }
-        Log.d("oiram", calendar.getTimeInMillis() + "");
         message.setText(hour + " : " + minute);
         intent.putExtra("alarm", true);
-        pendingIntent = PendingIntent.getBroadcast(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        pendingIntent = PendingIntent.getBroadcast(this, Constants.INTENT_REQUEST_CODE, intent, PendingIntent.FLAG_UPDATE_CURRENT);
         alarmManager.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);
         sharedPreferences.edit().putBoolean("checked", true).putInt("hour", hour).putInt("minute", minute).commit();
     }
 
     private void unchecked() {
-        Log.d("oiram", "from unchecked");
         message.setText("No");
         alarmManager.cancel(pendingIntent);
         pendingIntent.cancel();

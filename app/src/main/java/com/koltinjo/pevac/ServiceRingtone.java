@@ -32,7 +32,7 @@ public class ServiceRingtone extends Service {
                 .setSmallIcon(android.R.drawable.ic_delete)
                 .setContentTitle("Alarm")
                 .setContentText("Turn off")
-                .setContentIntent(PendingIntent.getActivity(this, 0, new Intent(getApplicationContext(), ActivityMain.class), 0))
+                .setContentIntent(PendingIntent.getActivity(this, Constants.INTENT_REQUEST_CODE, new Intent(getApplicationContext(), ActivityMain.class), 0))
                 .setAutoCancel(true);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
             notification = builder.build();
@@ -51,11 +51,11 @@ public class ServiceRingtone extends Service {
         alarm = intent.getExtras().getBoolean("alarm");
         if (alarm && !mediaPlayer.isPlaying()) {
             mediaPlayer.start();
-            notificationManager.notify(47, notification);
+            notificationManager.notify(Constants.NOTIFICATION_ID, notification);
         } else if (!alarm && mediaPlayer.isPlaying()) {
             mediaPlayer.pause();
             mediaPlayer.seekTo(0);
-            notificationManager.cancel(47);
+            notificationManager.cancel(Constants.NOTIFICATION_ID);
             // TODO sharedPrefs checked = false. Will this work?
         }
         return START_NOT_STICKY;
